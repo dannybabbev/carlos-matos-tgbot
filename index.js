@@ -1,4 +1,5 @@
 const TelegramBot = require('node-telegram-bot-api');
+const express = require('express');
 
 require('dotenv').config();
 
@@ -72,4 +73,16 @@ bot.onText(/\/whoathatsreal/, (msg) => {
 
 bot.onText(/\/wowwowwhatsup/, (msg) => {
   bot.sendAudio(msg.chat.id, `${audioPath}/wowwowWhatsUp.mp3`);
+});
+
+// Health check
+const app = express();
+const port = 8080;
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
 });
